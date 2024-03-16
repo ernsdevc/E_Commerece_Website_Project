@@ -1,0 +1,35 @@
+﻿@using iakademi41_Proje.MVVM
+@model AnaSayfaModel
+
+@{
+    ViewBag.Title = "MarkaListele";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-hover">
+    <thead style="background-color: black;color:white;">
+        <tr>
+            <th scope="col">ID</th>
+            <th colspan="2" scope="col">Marka Adı</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.markalar)
+        {
+            <tr>
+                <td>@item.SupplierID</td>
+                <td>@item.BrandName</td>
+                <td><img src="/Content/resimler/@item.PhotoPath" style="width:44px;height:44px;" alt="" /></td>
+                <td>
+                    <a href="/Admin/MarkaGuncelle/@item.SupplierID" class="btn btn-primary">Güncelle</a>
+                </td>
+                <td>
+                    <a href="/Admin/MarkaSil/@item.SupplierID" class="btn btn-danger" onclick="return confirm('Kayıt silinsin mi?')">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,55 @@
+﻿@using iakademi41_Proje.Models
+@model List<vw_orders>
+
+@{
+    ViewBag.Title = "Siparislerim";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- wishlist area start -->
+<div class="wishlist-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+                <div class="cart-wrapper table-responsive">
+                    <table class="shop_table cart ">
+                        <thead>
+                            <tr>
+                                <th class="product-name">Sipariş No</th>
+                                <th class="product-name">Tarih</th>
+                                <th class="product-name">Ürün Adı</th>
+                                <th class="product-name">Adet</th>
+                                <th class="product-subtotal">Fiyat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    @item.orderGroupGUID
+                                </td>
+                                <td class="product-name">
+                                    @item.OrderDate
+                                </td>
+                                <td class="product-name">
+                                    <a href="@Url.Action("Detaylar/" + item.ProductID)">@item.ProductName</a>
+                                </td>
+                                <td class="product-name">
+                                    @item.Quantity
+                                </td>
+                                <td class="product-name">
+                                    @item.Price TL
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- wishlist area end -->

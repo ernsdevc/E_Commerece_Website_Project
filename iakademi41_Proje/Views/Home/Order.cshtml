@@ -1,0 +1,245 @@
+﻿@using iakademi41_Proje.Models
+@model tbl_Users
+
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+
+<div class="wishlist-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 ">
+                <div class="cart_totals">
+                    <h2>TESLİMAT BİLGİLERİNİZ</h2>
+                    <div class="total_table">
+                        <table class="table-responsive">
+                            <tbody>
+                                <tr class="cart-subtotal">
+                                    <th>EMail</th>
+                                    <td><span class="amount">@Model.Email</span></td>
+                                </tr>
+                                <tr class="cart-subtotal">
+                                    <th>Ad Soyad</th>
+                                    <td><span class="amount">@Model.NameSurname</span></td>
+                                </tr>
+                                <tr class="cart-subtotal">
+                                    <th>Telefon</th>
+                                    <td><span class="amount">@Model.PhoneNumber</span></td>
+                                </tr>
+                                <tr class="cart-subtotal">
+                                    <th>Fatura Adresi</th>
+                                    <td><span class="amount">@Model.InvoiceAddress</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="@Url.Action("Order","Home")" method="post">
+    <div class="wishlist-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                    <div class="cart_totals">
+                        <h2>Kredi Kartı Bilgilerinizi Giriniz</h2>
+                        <div class="total_table">
+                            <table class="table-responsive">
+                                <tbody>
+                                    <tr class="cart-subtotal">
+                                        <th>Kredi KartNo</th>
+                                        <td>
+                                            <span class="amount">
+                                                <input type="text" name="kkartno" value="" maxlength="16" placeholder="Kredi KartNo" required />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="cart-subtotal">
+                                        <th>Ay</th>
+                                        <td>
+                                            <span class="amount">
+                                                <input type="text" name="ay" value="" maxlength="2" placeholder="Ay" required />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="cart-subtotal">
+                                        <th>Yıl</th>
+                                        <td>
+                                            <span class="amount">
+                                                <input type="text" name="yil" value="" maxlength="2" placeholder="Yıl" required />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="cart-subtotal">
+                                        <th>CVC</th>
+                                        <td>
+                                            <span class="amount">
+                                                <input type="text" name="cvc" value="" maxlength="3" placeholder="CVC" required />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wishlist-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                    <div class="cart_totals">
+                        <div class="total_table">
+                            <table class="table-responsive">
+                                <tbody>
+                                    <tr class="cart-subtotal">
+                                        <th>Fatura Tipi</th>
+                                        <td>
+                                            <span class="amount">
+                                                @Html.RadioButton("faturatipi", "rbBireysel", new { value = "rbBireysel", @checked = true }) Bireysel
+                                                @Html.RadioButton("faturatipi", "rbKurumsal", new { value = "rbKurumsal" }) Kurumsal
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="cart-subtotal" id="tr_tckimlikno">
+                                        <th>TC KimlikNo</th>
+                                        <td>
+                                            <span class="amount">
+                                                <input type="text" name="txt_tckimlikno" id="txt_tckimlikno" value="" onkeypress="return numberonly(this, event);" maxlength="11" required />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="cart-subtotal" id="tr_vergino" style="display:none">
+                                        <th>VergiNo</th>
+                                        <td>
+                                            <span class="amount">
+                                                <input type="text" name="txt_vergino" id="txt_vergino" value="" onkeypress="return numberonly(this, event);" maxlength="10" />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wishlist-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                    <div class="cart_totals">
+                        <h2>Satış Sözleşmesi</h2>
+                        <div class="total_table">
+                            <p>İade mal 2 gün içinde teslim edilebilir. Kırılan ürünlerden şirketimiz sorumlu değildir.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wishlist-wrapper" id="chk_kabulediyorum">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                    <div class="cart_totals">
+                        <div class="total_table">
+                            <label>
+                                @Html.CheckBox("chk_kabulediyorum", false)
+                                Yukarıdaki bilgilendirmeleri okudum, kabul ediyorum.
+                            </label>
+                            <div class="submit_crt" id="odeme_yap" style="display:none">
+                                <a href="@Url.Action("Order", "Home")" title="Ödeme Yap"><input type="submit" class="update_cart" value="Ödeme Yap" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+
+    $('input[type=radio][name=faturatipi]').on('change', function () {
+        if ($(this).val() == "rbBireysel") {
+            $("#tr_tckimlikno").css("display", "block")
+            $("#tr_vergino").css("display", "none")
+            $("#txt_tckimlikno").attr("required", "true")
+            $("#txt_vergino").removeAttr("required")
+        }
+        else {
+            $("#tr_tckimlikno").css("display", "none")
+            $("#tr_vergino").css("display", "block")
+            $("#txt_vergino").attr("required", "true")
+            $("#txt_tckimlikno").removeAttr("required")
+        }
+    })
+
+    $("[type=checkbox][name=chk_kabulediyorum]").change(function () {
+        if ($(this).prop('checked')) {
+            $("#odeme_yap").css("display", "block")
+        }
+        else {
+            $("#odeme_yap").css("display", "none")
+        }
+    })
+
+    //sadece rakam girilmesi gereken alanı kontrol eden fonksiyon
+    function numberonly(myfield, e, dec) {
+        var key;
+        var keychar;
+
+
+
+        if (window.event)
+            key = window.event.keyCode;
+        else if (e)
+            key = e.which;
+        else
+            return true;
+        keychar = String.fromCharCode(key);
+
+
+
+        // control keys
+        if ((key == null) || (key == 0) || (key == 8) ||
+            (key == 9) || (key == 13) || (key == 27))
+            return true;
+
+
+
+        // numbers
+        else if ((("0123456789").indexOf(keychar) > -1))
+            return true;
+
+
+
+        // decimal point jump
+        else if (dec && (keychar == ".")) {
+            myfield.form.elements[dec].focus();
+            alert("Lütfen sadece rakam giriniz.");
+            return false;
+        }
+        else {
+            alert("Lütfen sadece rakam giriniz.");
+            return false;
+        }
+    }
+</script>

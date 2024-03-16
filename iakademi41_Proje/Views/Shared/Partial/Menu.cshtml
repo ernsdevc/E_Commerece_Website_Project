@@ -1,0 +1,223 @@
+﻿@using iakademi41_Proje.Models
+
+<!-- main menu area start  -->
+<div class="main-menu-area ">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10 col-sm-8 col-md-3 col-lg-3">
+                <div class="menu-cat-area">
+                    <h3 class="nk-module-title"><span>Kategorİ</span></h3>
+                    <div class="nk-all-items">
+                        <div class="sp-module-content">
+                            <!-- treeview -->
+                            <div class="vina-treeview-virtuemart" id="vina-treeview-virtuemart93">
+                                <ul class="level0 treeview">
+
+                                    @foreach (var item in ViewBag.catlist as List<tbl_Categories>)
+                                    {
+                                        if (item.ParentID == 0)
+                                        {
+                                    <li>
+                                        <a title="Baby" href="/Home/Kategoriler/@item.CategoryID" class="baby">
+                                            <span class="catTitle ">@item.CategoryName</span>
+                                        </a>
+
+                                        @foreach (var subitem in ViewBag.catlist as List<tbl_Categories>)
+                                        {
+                                            if (item.CategoryID == subitem.ParentID)
+                                            {
+                                    <ul class="sub-menu treeview">
+                                        <li class="expandable">
+                                            <a title="Baby" href="/Home/Kategoriler/@subitem.CategoryID" class="baby">
+                                                <span class="catTitle ">@subitem.CategoryName</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                                    }
+                                                    }
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-3 col-md-9 col-lg-9">
+                <nav>
+                    <ul>
+                        <li><a href="@Url.Action("DetayliArama","Home")">Detaylı Arama</a></li>
+                        <li id="giris"><a href="@Url.Action("Giris","Home")">GİRİŞ</a></li>
+                        <li id="uyeol"><a href="@Url.Action("UyeOl","Home")">Üye Ol</a></li>
+                        @*<li>
+                            <a href="index.html#">Bana Özel</a>
+                            <div class="sp-dropdown-inner">
+                                <ul class="sp-dropdown-items">
+                                    <li class="sp-menu-item"><a href="blog-post.html">blog post page</a></li>
+                                    <li class="sp-menu-item"><a href="cart.html">cart page</a></li>
+                                    <li class="sp-menu-item"><a href="checkout.html">checkout page</a></li>
+                                    <li class="sp-menu-item"><a href="login.html">login page</a></li>
+                                    <li class="sp-menu-item"><a href="shop.html">shop page</a></li>
+                                    <li class="sp-menu-item"><a href="single-product.html">single product page</a></li>
+                                    <li class="sp-menu-item"><a href="wishlist.html">wishlist</a></li>
+                                </ul>
+                            </div>
+                        </li>*@
+                        <li><a href="@Url.Action("Hakkimizda","Home")">Hakkımızda</a></li>
+                        <li><a href="@Url.Action("Iletisim","Home")">İletİŞİm</a></li>
+                        <li><a>@Session["NameSurname"]</a></li>
+                        <li id="cikisyap"><a href="@Url.Action("Logout","Home")">Çıkış Yap</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- main menu area end  -->
+<!-- mobile-menu-area start -->
+<div class="mobile-menu-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mobile-menu">
+                    <nav id="dropdown">
+                        <ul>
+                            <li>
+                                <a href="index.html">Home</a>
+                                <ul>
+                                    <li><a href="index.html">Home 1</a></li>
+                                    <li><a href="index-2.html">Home 2</a></li>
+                                    <li><a href="index-3.html">Home 3</a></li>
+                                    <li><a href="index-4.html">Home 4</a></li>
+                                    <li><a href="index-5.html">Home 5</a></li>
+                                    <li><a href="index-6.html">Home 6</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li>
+                                <a href="index.html#">Pages</a>
+                                <ul>
+                                    <li><a href="blog-post.html">blog post page</a></li>
+                                    <li><a href="cart.html">cart page</a></li>
+                                    <li><a href="checkout.html">checkout page</a></li>
+                                    <li><a href="login.html">login page</a></li>
+                                    <li><a href="shop.html">shop page</a></li>
+                                    <li><a href="single-product.html">single product page</a></li>
+                                    <li><a href="wishlist.html">wishlist</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="corporate.html">Corporate</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- mobile-menu-area end -->
+<!-- search area start  -->
+<div class="nk-search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-0 col-sm-0 col-md-3 col-lg-3">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="nk-search">
+                    <div class="search_input">
+                        <input lang="tr" type="text" id="search" name="search" style="width:870px;" placeholder="Ürün, Kategori, Marka Ara" />
+                        <br />
+                        <div id="DV" style="width:870px;height:auto;margin-top:22px;border-style:solid;background-color:white;border-color:#F47E1E;z-index:10000;position:absolute;">
+                            <ul id="SUL">
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function getCurrentFileName() {
+        var pagePathName = window.location.pathname;
+        if (pagePathName == "/Home/Index") {
+            pagePathName = "";
+        }
+        return pagePathName.substring(pagePathName.lastIndexOf("/") + 1);
+    }
+
+    if (getCurrentFileName() == "") {
+         $(".nk-all-items").css("display","block")
+    }
+    else {
+        $(".nk-all-items").css("display", "none")
+    }
+
+    if (@Session.Count > 1) {
+        $("#giris").css("display", "none")
+        $("#uyeol").css("display", "none")
+        $("#cikisyap").css("display", "block")
+    }
+    else {
+        $("#giris").css("display", "block")
+        $("#uyeol").css("display", "block")
+        $("#cikisyap").css("display", "none")
+    }
+
+    $("#search").keyup(function () {
+        var id = $("#search").val();
+        // alert(id)
+        var ikat = 0;
+        var imar = 0;
+        var iurun = 0;
+
+        if (id != "") {
+            $.ajax({
+                url: '/Home/urunlerstring/' + id,
+                type: 'POST',
+                ContentType: "application/json;charset=UTF-8",
+                success: function (result) {
+                    $("#SUL").remove();
+                    $("#DV").append("<ul id='SUL'>")
+                    $.each(result, function (key, value) {
+                        if (value.KATEGORI != 0) {
+                            if (ikat == 0) {
+                                $("#SUL").append("<li><hr></li>")
+                                $("#SUL").append("<li><b>KATEGORİLER</b></li>")
+                                ikat++;
+                            }
+                            $("#SUL").append("<li><a href='/Home/Kategoriler/" +
+                                value.KATEGORI + " '>" + value.ARAMAISMI + "</a></li>")
+                        }
+                        if (value.MARKA != 0) {
+                            if (imar == 0) {
+                                $("#SUL").append("<li><hr></li>")
+                                $("#SUL").append("<li><b>MARKALAR</b></li>")
+                                imar++;
+                            }
+                            $("#SUL").append("<li><a href='/Home/Markalar/" +
+                                value.MARKA + " '>" + value.ARAMAISMI + "</a></li>")
+                        }
+                        if (value.URUN != 0) {
+                            if (iurun == 0) {
+                                $("#SUL").append("<li><hr></li>")
+                                $("#SUL").append("<li><b>ÜRÜNLER</b></li>")
+                                iurun++;
+                            }
+                            $("#SUL").append("<li><a href='/Home/Detaylar/" +
+                                value.URUN + " '>" + value.ARAMAISMI + "</a></li>")
+                        }
+                    })
+                }
+            })
+        }
+        else {
+            $("#SUL").remove()
+        }
+    })
+
+</script>

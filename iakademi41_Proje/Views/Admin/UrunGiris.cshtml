@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "UrunGiris";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    IEnumerable<SelectListItem> cl = ViewData["catlist"] as IEnumerable<SelectListItem>;
+    IEnumerable<SelectListItem> cs = ViewData["suplist"] as IEnumerable<SelectListItem>;
+}
+
+<!-- BEGIN SAMPLE FORM PORTLET-->
+<div class="portlet box green ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i> Ürün Giriş Formu
+        </div>
+        <div class="tools">
+            <a href="" class="collapse">
+            </a>
+            <a href="#portlet-config" data-toggle="modal" class="config">
+            </a>
+            <a href="" class="reload">
+            </a>
+            <a href="" class="remove">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        @using (Html.BeginForm("UrunGiris", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", @role = "form" }))
+        { 
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Kategori Seçiniz</label>
+                    <div class="col-md-9">
+                        @Html.DropDownList("CategoryID", cl, "Seçiniz", new { @required = "required", @class = "form-control input-lg" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Marka Seçiniz</label>
+                    <div class="col-md-9">
+                        @Html.DropDownList("SupplierID", cs, "Seçiniz", new { @required = "required", @class = "form-control input-lg" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Ürün Adı</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-lg" placeholder="Ürün Adı Giriniz" name="ProductName" required maxlength="44">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Fiyat</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-lg" placeholder="Fiyat Giriniz" name="Price" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Stok</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-lg" placeholder="Stok Giriniz" name="Stock" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">İndirim</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-lg" placeholder="İndirim Giriniz" name="Discount" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Durum</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-lg" placeholder="Durum Giriniz" name="Status" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Anahtar Kelimeler</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-lg" placeholder="Anahtar Kelime Giriniz" name="Keywords" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">KDV</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-lg" placeholder="KDV Giriniz" name="KDV" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Buna Bakanlar</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-lg" placeholder="Buna Bakanlar Giriniz" name="BunaBakanlar" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Notlar</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-lg" placeholder="Not Giriniz" name="Notes" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Resim</label>
+                    <div class="col-md-9">
+                        <input type="file" class="form-control input-lg" placeholder="Resim Seçiniz" name="fileuploader" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions right1">
+                <button type="submit" class="btn green">Kaydet</button>
+            </div>
+            }
+    </div>
+</div>
+<!-- END SAMPLE FORM PORTLET-->

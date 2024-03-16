@@ -1,0 +1,85 @@
+﻿@using iakademi41_Proje.Models
+<!-- Brand area start -->
+<div class="brand-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="all-p-title">
+                    <h3>Markalar</h3>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="all-brand singal-p">
+                @foreach (var item in @ViewBag.suplist as List<tbl_Suppliers>)
+                {
+                    <div class="singal_brand">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <a href="/Home/Markalar/@item.SupplierID"> <img src="~/Content/resimler/@item.PhotoPath" style="width:270px; height:100px;" alt="" /> </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer top area start -->
+<section id="sp-bottom-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-2"></div>
+            <div class="col-sm-6 col-md-4 sp-bottomcontact">
+                <div class="sp-column ">
+                    <div class="sp-module ">
+                        <h3 class="sp-module-title"><span>Bİze UlaŞIn</span></h3>
+                        <div class="sp-module-content">
+                            <div class="custom">
+                                <div class="t-bottom-content">
+                                    <p class="adress">
+                                        <em class="fa fa-map-marker"></em>
+                                        <span class="ft-content">
+                                            1450 sokak No: 12 35220 Alsancak-Konak / İzmir
+                                        </span>
+                                    </p>
+                                    <p class="phone">
+                                        <em class="fa fa-phone"></em>
+                                        <span class="ft-content">@ViewBag.telefon</span>
+                                    </p>
+                                    <p class="email">
+                                        <em class="fa fa-envelope"></em>
+                                        <span class="ft-content">erensudeveci@gmail.com</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 sp-bottomcontact">
+                <div class="sp-column ">
+                    <div class="sp-module Subscribe-area">
+                        <h3 class="sp-module-title"><span>BİZDEN HABERLER</span></h3>
+                        <div class="sp-module-content">
+                            <p>Typi non habent claritatem insitam; est usus legentis in iis qui facit </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-2"></div>
+        </div>
+    </div>
+</section>
+<footer id="sp-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <p>Tüm Hakları Saklıdır. &copy; 2022 <a href="../../../bootexperts_default.html" target="_blank"></a> iAkademi</p>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="payment-logo">
+                    <img src="/Content/img/payment.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer top area end -->

@@ -1,0 +1,35 @@
+﻿@using iakademi41_Proje.MVVM
+@model AnaSayfaModel
+
+@{
+    ViewBag.Title = "KategoriListele";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-hover">
+    <thead style="background-color: black;color:white;">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">ParentID</th>
+            <th scope="col">Kategori Adı</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.kategoriler)
+        {
+        <tr>
+            <td>@item.CategoryID</td>
+            <td>@item.ParentID</td>
+            <td>@item.CategoryName</td>
+            <td>
+                <a href="/Admin/KategoriGuncelle/@item.CategoryID" class="btn btn-primary">Güncelle</a>
+            </td>
+            <td>
+                <a href="/Admin/KategoriSil/@item.CategoryID" class="btn btn-danger" onclick="return confirm('Kayıt silinsin mi?')">Sil</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,83 @@
+﻿@using iakademi41_Proje.MVVM
+@model AnaSayfaModel
+
+@{
+    ViewBag.Title = "UrunListele";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div>
+    <label style="background-color: mediumvioletred; font-size: 20px;color:white;">Günün Ürünü</label>
+    <label style="background-color: mediumaquamarine; font-size: 20px;">Özel</label>
+    <label style="background-color: forestgreen; font-size: 20px;color:white;">Fırsat</label>
+    <label style="background-color: aqua; font-size: 20px;">Slider</label>
+</div>
+
+<table class="table table-hover">
+    <thead style="background-color: black;color:white;">
+        <tr>
+            <th scope="col">ID</th>
+            <th colspan="2" scope="col">Ürün Adı</th>
+            <th scope="col">Fiyat</th>
+            <th scope="col">Kategori</th>
+            <th scope="col">Marka</th>
+            <th scope="col">Stok</th>
+            <th scope="col">İndirim</th>
+            <th scope="col">KDV</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.urunler)
+        {
+        <tr>
+            <td>@item.ProductID</td>
+            <td>@item.ProductName</td>
+            <td><img src="/Content/resimler/@item.PhotoPath" style="width:44px;height:44px;" alt="" /></td>
+            <td>@item.Price</td>
+            <td>@item.CategoryID</td>
+            <td>@item.BrandName</td>
+            <td>@item.Stock</td>
+            <td>@item.Discount</td>
+            <td>@item.KDV</td>
+            <td>@item.Status</td>
+            <td>
+                @if (@item.Status == 1)
+                {
+                    <label style="background-color: mediumvioletred;color:white;">Günün Ürünü</label>
+                }
+                else if (@item.Status == 2)
+                {
+                    <label style="background-color: mediumaquamarine;">Özel</label>
+                }
+                else if (@item.Status == 3)
+                {
+                    <label style="background-color: forestgreen;color:white;">Fırsat</label>
+                }
+                else if (@item.Status == 4)
+                {
+                    <label style="background-color: aqua;">Slider</label>
+                }
+                else
+                {
+                    @item.Status
+                }
+            </td>
+            <td>
+                <a href="/Admin/UrunGuncelle/@item.ProductID" class="btn btn-primary">Güncelle</a>
+            </td>
+            <td>
+                <a href="/Admin/UrunSil/@item.ProductID" class="btn btn-danger" onclick="return confirm('Kayıt silinsin mi?')">Sil</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+

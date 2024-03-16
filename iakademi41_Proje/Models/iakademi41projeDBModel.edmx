@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="iakademi41proje_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Categories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="44" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Messages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="11" />
+          <Property Name="Email" Type="nvarchar" MaxLength="11" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="11" />
+          <Property Name="Message" Type="nvarchar" MaxLength="444" />
+        </EntityType>
+        <EntityType Name="tbl_Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="orderGroupGUID" Type="nvarchar" MaxLength="44" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="44" />
+          <Property Name="Price" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="Stock" Type="bigint" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="Status" Type="tinyint" />
+          <Property Name="AddDate" Type="date" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
+          <Property Name="KDV" Type="int" />
+          <Property Name="OneCikanlar" Type="int" />
+          <Property Name="CokSatanlar" Type="int" />
+          <Property Name="BunaBakanlar" Type="int" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="PhotoPath" Type="nvarchar" MaxLength="77" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Settings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sayfadakiurunsayisi" Type="int" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="44" />
+        </EntityType>
+        <EntityType Name="tbl_Suppliers">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="44" />
+          <Property Name="PhotoPath" Type="nvarchar" MaxLength="44" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="77" />
+          <Property Name="Password" Type="nvarchar" MaxLength="44" />
+          <Property Name="NameSurname" Type="nvarchar" MaxLength="77" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="44" />
+          <Property Name="InvoiceAddress" Type="nvarchar" MaxLength="77" />
+          <Property Name="isAdmin" Type="bit" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'iakademi41proje_DB.dbo.vw_arama' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_arama">
+          <Key>
+            <PropertyRef Name="KATEGORI" />
+            <PropertyRef Name="URUN" />
+            <PropertyRef Name="MARKA" />
+          </Key>
+          <Property Name="KATEGORI" Type="int" Nullable="false" />
+          <Property Name="URUN" Type="int" Nullable="false" />
+          <Property Name="MARKA" Type="int" Nullable="false" />
+          <Property Name="ARAMAISMI" Type="nvarchar" MaxLength="44" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'iakademi41proje_DB.dbo.vw_kategoriler' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_kategoriler">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="44" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'iakademi41proje_DB.dbo.vw_markalar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_markalar">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="44" />
+          <Property Name="PhotoPath" Type="nvarchar" MaxLength="44" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'iakademi41proje_DB.dbo.vw_orders' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_orders">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="orderGroupGUID" Type="nvarchar" MaxLength="44" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="44" />
+          <Property Name="Price" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="NameSurname" Type="nvarchar" MaxLength="77" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'iakademi41proje_DB.dbo.vw_products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="44" />
+          <Property Name="Price" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="44" />
+          <Property Name="SupplierID" Type="int" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="44" />
+          <Property Name="Stock" Type="bigint" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="Status" Type="tinyint" />
+          <Property Name="AddDate" Type="date" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
+          <Property Name="KDV" Type="int" />
+          <Property Name="OneCikanlar" Type="int" />
+          <Property Name="CokSatanlar" Type="int" />
+          <Property Name="BunaBakanlar" Type="int" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="PhotoPath" Type="nvarchar" MaxLength="77" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="iakademi41proje_DBModelStoreContainer">
+          <EntitySet Name="tbl_Categories" EntityType="Self.tbl_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Messages" EntityType="Self.tbl_Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Orders" EntityType="Self.tbl_Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Products" EntityType="Self.tbl_Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Settings" EntityType="Self.tbl_Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Suppliers" EntityType="Self.tbl_Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Users" EntityType="Self.tbl_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_arama" EntityType="Self.vw_arama" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_arama].[KATEGORI] AS [KATEGORI], 
+    [vw_arama].[URUN] AS [URUN], 
+    [vw_arama].[MARKA] AS [MARKA], 
+    [vw_arama].[ARAMAISMI] AS [ARAMAISMI]
+    FROM [dbo].[vw_arama] AS [vw_arama]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_kategoriler" EntityType="Self.vw_kategoriler" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_kategoriler].[CategoryID] AS [CategoryID], 
+    [vw_kategoriler].[ParentID] AS [ParentID], 
+    [vw_kategoriler].[CategoryName] AS [CategoryName], 
+    [vw_kategoriler].[active] AS [active]
+    FROM [dbo].[vw_kategoriler] AS [vw_kategoriler]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_markalar" EntityType="Self.vw_markalar" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_markalar].[SupplierID] AS [SupplierID], 
+    [vw_markalar].[BrandName] AS [BrandName], 
+    [vw_markalar].[PhotoPath] AS [PhotoPath], 
+    [vw_markalar].[active] AS [active]
+    FROM [dbo].[vw_markalar] AS [vw_markalar]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_orders" EntityType="Self.vw_orders" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_orders].[ProductID] AS [ProductID], 
+    [vw_orders].[OrderID] AS [OrderID], 
+    [vw_orders].[OrderDate] AS [OrderDate], 
+    [vw_orders].[orderGroupGUID] AS [orderGroupGUID], 
+    [vw_orders].[Quantity] AS [Quantity], 
+    [vw_orders].[ProductName] AS [ProductName], 
+    [vw_orders].[Price] AS [Price], 
+    [vw_orders].[NameSurname] AS [NameSurname], 
+    [vw_orders].[UserID] AS [UserID]
+    FROM [dbo].[vw_orders] AS [vw_orders]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_products" EntityType="Self.vw_products" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_products].[ProductID] AS [ProductID], 
+    [vw_products].[ProductName] AS [ProductName], 
+    [vw_products].[Price] AS [Price], 
+    [vw_products].[CategoryID] AS [CategoryID], 
+    [vw_products].[CategoryName] AS [CategoryName], 
+    [vw_products].[SupplierID] AS [SupplierID], 
+    [vw_products].[BrandName] AS [BrandName], 
+    [vw_products].[Stock] AS [Stock], 
+    [vw_products].[Discount] AS [Discount], 
+    [vw_products].[Status] AS [Status], 
+    [vw_products].[AddDate] AS [AddDate], 
+    [vw_products].[Keywords] AS [Keywords], 
+    [vw_products].[KDV] AS [KDV], 
+    [vw_products].[OneCikanlar] AS [OneCikanlar], 
+    [vw_products].[CokSatanlar] AS [CokSatanlar], 
+    [vw_products].[BunaBakanlar] AS [BunaBakanlar], 
+    [vw_products].[Notes] AS [Notes], 
+    [vw_products].[PhotoPath] AS [PhotoPath], 
+    [vw_products].[active] AS [active]
+    FROM [dbo].[vw_products] AS [vw_products]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="iakademi41proje_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Categories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="CategoryName" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="Stock" Type="Int64" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="AddDate" Type="DateTime" Precision="0" />
+          <Property Name="Keywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KDV" Type="Int32" />
+          <Property Name="OneCikanlar" Type="Int32" />
+          <Property Name="CokSatanlar" Type="Int32" />
+          <Property Name="BunaBakanlar" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoPath" Type="String" MaxLength="77" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Suppliers">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoPath" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="iakademi41proje_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Categories" EntityType="Self.tbl_Categories" />
+          <EntitySet Name="tbl_Products" EntityType="Self.tbl_Products" />
+          <EntitySet Name="tbl_Suppliers" EntityType="Self.tbl_Suppliers" />
+          <EntitySet Name="tbl_Users" EntityType="iakademi41proje_DBModel.tbl_Users" />
+          <EntitySet Name="tbl_Settings" EntityType="iakademi41proje_DBModel.tbl_Settings" />
+          <EntitySet Name="tbl_Messages" EntityType="iakademi41proje_DBModel.tbl_Messages" />
+          <EntitySet Name="tbl_Orders" EntityType="iakademi41proje_DBModel.tbl_Orders" />
+          <EntitySet Name="vw_orders" EntityType="iakademi41proje_DBModel.vw_orders" />
+          <EntitySet Name="vw_arama" EntityType="iakademi41proje_DBModel.vw_arama" />
+          <EntitySet Name="vw_products" EntityType="iakademi41proje_DBModel.vw_products" />
+          <EntitySet Name="vw_kategoriler" EntityType="iakademi41proje_DBModel.vw_kategoriler" />
+          <EntitySet Name="vw_markalar" EntityType="iakademi41proje_DBModel.vw_markalar" />
+        </EntityContainer>
+        <EntityType Name="tbl_Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="77" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="NameSurname" Type="String" MaxLength="77" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceAddress" Type="String" MaxLength="77" FixedLength="false" Unicode="true" />
+          <Property Name="isAdmin" Type="Boolean" />
+          <Property Name="active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Settings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sayfadakiurunsayisi" Type="Int32" />
+          <Property Name="telefon" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Messages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="444" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="orderGroupGUID" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_orders">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="orderGroupGUID" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="NameSurname" Type="String" MaxLength="77" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_arama">
+          <Key>
+            <PropertyRef Name="KATEGORI" />
+            <PropertyRef Name="URUN" />
+            <PropertyRef Name="MARKA" />
+          </Key>
+          <Property Name="KATEGORI" Type="Int32" Nullable="false" />
+          <Property Name="URUN" Type="Int32" Nullable="false" />
+          <Property Name="MARKA" Type="Int32" Nullable="false" />
+          <Property Name="ARAMAISMI" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierID" Type="Int32" Nullable="false" />
+          <Property Name="BrandName" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="Stock" Type="Int64" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="AddDate" Type="DateTime" Precision="0" />
+          <Property Name="Keywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KDV" Type="Int32" />
+          <Property Name="OneCikanlar" Type="Int32" />
+          <Property Name="CokSatanlar" Type="Int32" />
+          <Property Name="BunaBakanlar" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoPath" Type="String" MaxLength="77" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vw_kategoriler">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="CategoryName" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vw_markalar">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoPath" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="iakademi41proje_DBModelStoreContainer" CdmEntityContainer="iakademi41proje_DBEntities">
+          <EntitySetMapping Name="tbl_Categories">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.tbl_Categories">
+              <MappingFragment StoreEntitySet="tbl_Categories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Products">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.tbl_Products">
+              <MappingFragment StoreEntitySet="tbl_Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="KDV" ColumnName="KDV" />
+                <ScalarProperty Name="OneCikanlar" ColumnName="OneCikanlar" />
+                <ScalarProperty Name="CokSatanlar" ColumnName="CokSatanlar" />
+                <ScalarProperty Name="BunaBakanlar" ColumnName="BunaBakanlar" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Suppliers">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.tbl_Suppliers">
+              <MappingFragment StoreEntitySet="tbl_Suppliers">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Users">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.tbl_Users">
+              <MappingFragment StoreEntitySet="tbl_Users">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="InvoiceAddress" ColumnName="InvoiceAddress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="NameSurname" ColumnName="NameSurname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Settings">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.tbl_Settings">
+              <MappingFragment StoreEntitySet="tbl_Settings">
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="sayfadakiurunsayisi" ColumnName="sayfadakiurunsayisi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Messages">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.tbl_Messages">
+              <MappingFragment StoreEntitySet="tbl_Messages">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Orders">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.tbl_Orders">
+              <MappingFragment StoreEntitySet="tbl_Orders">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="orderGroupGUID" ColumnName="orderGroupGUID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_orders">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.vw_orders">
+              <MappingFragment StoreEntitySet="vw_orders">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="NameSurname" ColumnName="NameSurname" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="orderGroupGUID" ColumnName="orderGroupGUID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_arama">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.vw_arama">
+              <MappingFragment StoreEntitySet="vw_arama">
+                <ScalarProperty Name="ARAMAISMI" ColumnName="ARAMAISMI" />
+                <ScalarProperty Name="MARKA" ColumnName="MARKA" />
+                <ScalarProperty Name="URUN" ColumnName="URUN" />
+                <ScalarProperty Name="KATEGORI" ColumnName="KATEGORI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_products">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.vw_products">
+              <MappingFragment StoreEntitySet="vw_products">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="BunaBakanlar" ColumnName="BunaBakanlar" />
+                <ScalarProperty Name="CokSatanlar" ColumnName="CokSatanlar" />
+                <ScalarProperty Name="OneCikanlar" ColumnName="OneCikanlar" />
+                <ScalarProperty Name="KDV" ColumnName="KDV" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_kategoriler">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.vw_kategoriler">
+              <MappingFragment StoreEntitySet="vw_kategoriler">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_markalar">
+            <EntityTypeMapping TypeName="iakademi41proje_DBModel.vw_markalar">
+              <MappingFragment StoreEntitySet="vw_markalar">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

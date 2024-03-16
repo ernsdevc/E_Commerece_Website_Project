@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "UyeOl";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- breadcrumb area start  -->
+<div id="sp-breadcrumb-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12" id="sp-breadcrumb">
+                <div class="sp-column ">
+                    <div class="sp-module ">
+                        <div class="sp-module-content">
+                            <ul class="breadcrumb">
+                                <li><i class="fa fa-home"></i></li>
+                                <li class="active">Üye Kayıt Formu</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb area End  -->
+<!-- Loging area Start  -->
+<div class="loging-areas">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-3 col-lg-3">
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="login-users" style="background-color:burlywood;">
+                    <form action="/Home/UyeOl" id="com-form-login" method="post">
+                        @Html.AntiForgeryToken() @*cross-site saldırılara karşı*@
+                        <fieldset class="userdata content">
+                            <h2>Üye Bİlgİlerİ</h2>
+                            <ul class="form-list">
+                                <li>
+                                    <label class="required"><em>*</em>Email:</label>
+                                    <div class="input-box" id="com-form-login-username">
+                                        <input type="text" placeholder="Email" class="inputbox" name="Email" required>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label class="required"><em>*</em>Şifre:</label>
+                                    <div class="input-box" id="com-form-login-password">
+                                        <input type="password" placeholder="Şifre" class="inputbox" id="modlgn-passwd" name="Password" required>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label class="required"><em>*</em>Ad Soyad:</label>
+                                    <div class="input-box">
+                                        <input type="text" placeholder="Ad Soyad" class="inputbox" name="NameSurname" required>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label class="required"><em>*</em>Telefon:</label>
+                                    <div class="input-box">
+                                        <input type="text" placeholder="Telefon" class="inputbox" name="PhoneNumber" required maxlength="15">
+                                    </div>
+                                </li>
+                                <li>
+                                    <label class="required"><em>*</em>Adres:</label>
+                                    <div class="input-box">
+                                        <input type="text" placeholder="Adres" class="inputbox" name="InvoiceAddress" required>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label class="required"><em>*</em>Karakteri Giriniz:</label>
+                                    <img src="/Home/captcha" />
+                                    <div class="input-box">
+                                        <input type="text" placeholder="Güvenlik Rakamını Giriniz" class="inputbox" name="txt_captcha" required maxlength="5">
+                                    </div>
+                                </li>
+                            </ul>
+                        </fieldset>
+                        <div class="buttons-set">
+                            <input type="submit" value="Üye Ol" class="vina-button" name="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Loging area area End  -->

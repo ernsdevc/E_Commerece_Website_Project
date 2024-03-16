@@ -1,0 +1,103 @@
+﻿@using iakademi41_Proje.MVVM
+@model AnaSayfaModel
+
+@{
+    ViewBag.Title = "OzelUrunler";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- Shop area start  -->
+<div class="shop-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="shop--right">
+                    <div class="shop-product">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                            </div>
+                            <div class="clear"></div>
+                            <div class="singl-shop">
+                                <div id="add_product">
+                                    <!-- SP-SINGLE Product -->
+                                    @foreach (var item in Model.ozel_urunler)
+                                    {
+                                        <!-- SP-SINGLE Product -->
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <div class="sp-single">
+                                                <div class="sp-img-area">
+                                                    <a href="/Home/Detaylar/@item.ProductID">
+                                                        <img class="first-img" src="~/Content/resimler/@item.PhotoPath" alt="" style="width:270px; height:200px;" />
+                                                        <img class="hover-img" src="~/Content/resimler/@item.PhotoPath" alt="" style="width:270px; height:200px;" />
+                                                    </a>
+
+                                                    <div class="quick-view-detail">
+                                                        <a href="/Home/Detaylar/@item.ProductID">Detaylar</a>
+                                                    </div>
+                                                    <div class="sp-label-pro sp-label-pro-hot" style="background-color: #68B10C;">Özel</div>
+                                                </div>
+                                                <div class="sp-info-area">
+                                                    <h2 class="product-name"><a title="@item.ProductName" href="/Home/Detaylar/@item.ProductID">@item.ProductName</a></h2>
+                                                    <div class="product-rating">
+                                                        <div class="ratingbox" title="" Rating="3/5">
+                                                            <div style="width:50px" class="stars-orange"></div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="all-prices">
+                                                        <span class="sp-price main-price">@item.Price TL</span>
+                                                    </p>
+                                                    <div class="sp-button">
+                                                        <div class="s-button">
+                                                            <a href="/Home/Sepet/@item.ProductID" data-toggle="tooltip" data-placement="top" title="Sepete Ekle" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                                        </div>
+                                                        <div class="s-button">
+                                                            <a href="" data-toggle="tooltip" data-placement="top" title="" class="black-tooltip add-to-cart all_src_icon"> <i class=""></i> </a>
+                                                        </div>
+                                                        <div class="s-button last-b ">
+                                                            <a href="/Home/Detaylar/@item.ProductID" data-toggle="tooltip" data-placement="top" title="Detaylar" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div id="loadmore">
+                                    <div class="s-poraduct-botton">
+                                        <input type="submit" value="Daha Fazla Ürün" />
+                                    </div>
+                                </div>
+
+                                <input type="hidden" id="pagenumber" value="0" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Shop area End  -->
+<script>
+    $(document).on("click", "#loadmore", function () {
+        var pagenumber = parseInt($("#pagenumber").val())
+        var nextpagenumber = pagenumber + 1;
+        $.ajax({
+            type: "GET",
+            url: "/Home/partial_OzelUrunler",
+            data: { pagenumber: nextpagenumber },
+            processData: true,
+            cache: true,
+            success: function (result) {
+                $("#add_product").append(result)
+                $("#pagenumber").val(+nextpagenumber)
+            }
+        })
+    })
+</script>
+
+

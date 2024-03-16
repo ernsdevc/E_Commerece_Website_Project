@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "iletisim";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- breadcrumb area start  -->
+<div id="sp-breadcrumb-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12" id="sp-breadcrumb">
+                <div class="sp-column ">
+                    <div class="sp-module ">
+                        <div class="sp-module-content">
+                            <ul class="breadcrumb">
+                                <li><i class="fa fa-home"></i></li>
+                                <li class="active">Bize Ulaşın</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb area End  -->
+<!-- map bannar area Start  -->
+<div class="map-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div id="googleMap" style="width:100%;height:433px;"></div>
+                <div class="map-info-area">
+                    <h3>Bize Mail Gönderin</h3>
+                    <p>We possess within us two minds. So far I have written only of the conscious mind. I would now like to introduce you to your second mind, the hidden and mysterious subconscious. Our subconscious mind contains such power and complexity that it literally staggers the imagination.</p>
+                    <div class="clear"></div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-8 col-lg-8">
+                            <div class="contact-p">
+                                <form action="/Home/Mesaj" method="post">
+                                    <input type="text" placeholder="İsim *" name="Name">
+                                    <input type="text" placeholder="Email *" name="Email">
+                                    <input type="text" placeholder="Başlık" name="Subject">
+                                    <textarea cols="30" rows="10" placeholder="Mesajınız *" name="Message"></textarea>
+                                    <div class="submit control-group">
+                                        <div class="controls">
+                                            <input type="submit" value="Gönder" class="btn btn-large btn-primary submit">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <div class="c-right-area">
+                                <h6 class="sppb-addon-title">Bilgi</h6>
+                                <div class="sppb-addon-content">
+                                    <p><span><em class="fa fa-map-marker"></em></span> 1450 sokak No: 12 35220 Alsancak-Konak / İzmir</p>
+                                    <p><span><em class="fa fa-envelope"></em></span> @ViewBag.telefon</p>
+                                    <p><span><em class="fa fa-phone"></em></span> erensudeveci@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="c-right-area r-next">
+                                <h6 class="sppb-addon-title">Çalışma Saatleri</h6>
+                                <p>Pazartesi &ndash; Cuma: 09:00 - 20:00  Cumartesi: 09:00 - 17:00 Pazar: Tatil</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- map bannar area End  -->
